@@ -1,0 +1,51 @@
+name: CI for dev branch
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Configure DVC remote and pull data
+      env:
+        GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      run: |
+        echo "$GCP_SERVICE_ACCOUNT" > account.json
+        export GOOGLE_APPLICATION_CREDENTIALS="account.json"
+        dvc remote add -d gcsremote gs://21f3000376-week2
+        dvc pull -r gcsremote
+
+    - name: Run Pytest
+      run: |
+        pytest -q > report.txt || true
+
+    - name: Setup CML
+      uses: iterative/setup-cml@v2
+
+    - name: Post CML Report
+      env:
+        REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cml comment create report.txt
+

@@ -3,7 +3,7 @@ pandas
 numpy
 scikit-learn
 joblib
-pytest
+pytest>=7.0.0
 cml
 dvc
 dvc-gs

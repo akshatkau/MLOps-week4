@@ -29,6 +29,7 @@ jobs:
       run: |
         echo "$GCP_SERVICE_ACCOUNT" > account.json
         export GOOGLE_APPLICATION_CREDENTIALS="account.json"
+        dvc remote add -d gcsremote gs://21f3000376-week2
         dvc pull -r gcsremote
 
     - name: Run Pytest

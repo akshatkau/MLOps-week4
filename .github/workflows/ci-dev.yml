@@ -25,8 +25,10 @@ jobs:
 
     - name: Configure DVC remote and pull data
       env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+        GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
       run: |
+        echo "$GCP_SERVICE_ACCOUNT" > account.json
+        export GOOGLE_APPLICATION_CREDENTIALS="account.json"
         dvc pull -r gcsremote
 
     - name: Run Pytest
@@ -34,8 +36,10 @@ jobs:
         pytest -q > report.txt || true
 
     - name: Post CML Report
+      uses: iterative/setup-cml@v2
       env:
         REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        version: 'latest'
       run: |
-        pip install cml
         cml comment create report.txt

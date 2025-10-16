@@ -27,17 +27,17 @@ This structure highlights a typical organization for a machine learning project,
 
 ```text
 MLOps-week4/
-├── data/                                 # Iris dataset (tracked by DVC)
-├── artifacts/                            # Trained model (tracked by DVC)
+├── data/                                 
+├── artifacts/                           
 ├── tests/
-│   ├── test_data_validation.py           # Validates the dataset
-│   └── test_evaluation.py                # Tests model accuracy
-├── main.py                               # Model training script
-├── augment_data.py                       # Data augmentation script
-├── requirements.txt                      # Project dependencies
+│   ├── test_data_validation.py        
+│   └── test_evaluation.py             
+├── main.py                            
+├── augment_data.py                       
+├── requirements.txt                      
 └── .github/
     └── workflows/
-        └── ci-dev.yml                    # CI pipeline configuration
+        └── ci-dev.yml                   
 
 ```
 

@@ -1,4 +1,6 @@
 [core]
-    remote = gcsremote
+    remote = localremote
 ['remote "gcsremote"']
     url = gs://21f3000376-week2
+['remote "localremote"']
+    url = /home/coolaki_22/week-2-dvc-4/MLOps-week2/.dvc/cache

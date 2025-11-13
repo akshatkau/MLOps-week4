@@ -1,0 +1,14 @@
+artifact_uri: file:///home/coolaki_22/week8/MLOps-week4/mlruns/291982083273331746/2195a739f0c149dfa60c5aeb338557d0/artifacts
+end_time: 1763020945696
+entry_point_name: ''
+experiment_id: '291982083273331746'
+lifecycle_stage: active
+run_id: 2195a739f0c149dfa60c5aeb338557d0
+run_name: gaudy-gull-420
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763020945670
+status: 3
+tags: []
+user_id: coolaki_22

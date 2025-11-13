@@ -1,0 +1,14 @@
+artifact_uri: file:///home/coolaki_22/week8/MLOps-week4/mlruns/291982083273331746/1bdbb78735a54195b33bb6c8d6b9fc4f/artifacts
+end_time: 1763020958836
+entry_point_name: ''
+experiment_id: '291982083273331746'
+lifecycle_stage: active
+run_id: 1bdbb78735a54195b33bb6c8d6b9fc4f
+run_name: unequaled-hen-976
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763020958798
+status: 3
+tags: []
+user_id: coolaki_22

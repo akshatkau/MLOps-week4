@@ -1,52 +1,53 @@
-# MLOps Week 4 Assignment
+# Week 8 – Data Poisoning, MLflow Tracking, and CI Validation
 
-## Overview  
-This project demonstrates an **end-to-end MLOps workflow** using the **Iris dataset**.  
-It integrates:
-- **DVC** for data and model versioning  
-- **GitHub Actions** for Continuous Integration (CI)  
-- **Pytest** for data and model validation  
-- **CML** for automated reporting in GitHub comments  
+This branch implements controlled data poisoning on the IRIS dataset, retrains the model under different corruption levels, and evaluates the impact using MLflow. The pipeline is integrated with DVC for data versioning and GitHub Actions for CI validation.
 
----
+## Overview
 
-## Objectives  
-- Setup a GitHub repository with `dev` and `main` branches  
-- Create unit tests for data validation and model evaluation  
-- Configure **CI** to pull data and model from **DVC (GCS remote)**  
-- Automate testing and reporting using **CML**  
+Week 8 covers:
+- Generating poisoned datasets at 5%, 10%, and 50% noise levels
+- Training a Decision Tree classifier on each dataset
+- Tracking parameters, metrics, and artifacts using MLflow
+- Validating reproducibility through DVC and GitHub Actions CI
 
----
+## Data Poisoning
 
-## Files and Folders  
-## MLOps Project Structure
+The script `poison_iris.py` injects Gaussian noise into a percentage of rows:
 
-This structure highlights a typical organization for a machine learning project, leveraging **DVC** (Data Version Control) for tracking data and models, and a **CI/CD pipeline** for automation.
-
-### Files and Folders Tree
-
-```text
-MLOps-week4/
-├── data/                                 
-├── artifacts/                           
-├── tests/
-│   ├── test_data_validation.py        
-│   └── test_evaluation.py             
-├── main.py                            
-├── augment_data.py                       
-├── requirements.txt                      
-└── .github/
-    └── workflows/
-        └── ci-dev.yml                   
-
-```
-
-## Key Commands  
 ```bash
-dvc pull -r gcsremote
-pytest -q
-git commit --allow-empty -m "Trigger CI"
-git push origin dev
+python poison_iris.py 5
+python poison_iris.py 10
+python poison_iris.py 50
+```
+Outputs:
+
+iris_poison_5.csv
+
+iris_poison_10.csv
+
+iris_poison_50.csv
+
+## Training and MLflow Logging
+
+Training supports dataset selection:
+```bash
+python main.py --data data/iris.csv
+python main.py --data data/iris_poison_5.csv
+python main.py --data data/iris_poison_10.csv
+python main.py --data data/iris_poison_50.csv
 ```
 
+Each run logs:
 
+Accuracy
+
+Parameters
+
+Model artifact (model.joblib)
+
+Metrics file (metrics.csv)
+
+## MLflow UI can be launched with:
+```bash
+mlflow ui --port 5001
+```

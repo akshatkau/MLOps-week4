@@ -1,4 +1,4 @@
-#!/home/coolaki_22/week-2-dvc-4/MLOps-week2/.env/bin/python3
+#!/home/coolaki_22/week8/MLOps-week4/.env/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

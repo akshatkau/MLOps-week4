@@ -1,0 +1,14 @@
+artifact_uri: file:///home/coolaki_22/week8/MLOps-week4/mlruns/291982083273331746/32b5877b10644a8fa605c26bbbbbc572/artifacts
+end_time: 1763020964129
+entry_point_name: ''
+experiment_id: '291982083273331746'
+lifecycle_stage: active
+run_id: 32b5877b10644a8fa605c26bbbbbc572
+run_name: bemused-gnu-528
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763020964087
+status: 3
+tags: []
+user_id: coolaki_22
